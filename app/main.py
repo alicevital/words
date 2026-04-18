@@ -1,4 +1,6 @@
 import uuid
+from app.schemas.daily_schema import DailyResponse
+from app.schemas.guess_schema import GuessRequest, GuessResponse
 from fastapi import FastAPI, Request, Response, HTTPException
 from app.game.words import carregar_palavras, normalizar, palavra_do_dia, palavra_valida
 from app.game.logic import avaliar_tentativa
@@ -38,17 +40,18 @@ def startup():
 
 
 @app.get("/daily")
-def daily():
+def daily() -> DailyResponse:
     palavra = palavra_do_dia()
     return {
+        "date": date.today().isoformat(),
         "tamanho": len(palavra),
         "hash": gerar_hash(palavra)
     }
 
 
 @app.post("/guess")
-def guess(palavra: str, request: Request, response: Response):
-    palavra = normalizar(palavra)
+def guess(req: GuessRequest, request: Request, response: Response) -> GuessResponse:
+    palavra = normalizar(req.palavra)
     resposta = palavra_do_dia()
 
     session_id = request.cookies.get("session_id")
