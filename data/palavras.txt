@@ -252,4 +252,5 @@ creme
 zebra
 zunir
 zumbi
-
+feios
+feias
