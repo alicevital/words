@@ -2,7 +2,39 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  font-family: Arial;
+  font-family: Arial, sans-serif;
+  justify-content: center;
+  height: 100vh;
+  margin: 0;
+  background-color: #272757;
+  color: #8686AC
+}
+
+h2 {
+    color: #8686AC;
+    margin-bottom: 20px;
+    letter-spacing: 2px;
+}
+
+input {
+    padding: 10px;
+    border: 1px solid #505081;
+    background-color: #0f0e47;
+    color: #8686ac;
+    outline: none;
+}
+
+button {
+    padding: 10px 15px;
+    margin-left: 10px;
+    border: none;
+    background-color: #505081;
+    color: #ffff;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #8686AC;
 }
 
 #grid {
@@ -15,16 +47,36 @@ body {
 .row {
   display: grid;
   grid-template-columns: repeat(5, 50px);
-  gap: 8px;
+  gap: 10px;
 }
 
 .cell {
   width: 50px;
   height: 50px;
-  border: 2px solid #ccc;
+  border: 2px solid #505081;
+  background-color: #d3d3ff;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 24px;
+  font-size: 26px;
+  font-weight: bold;
   text-transform: uppercase;
+  color: #8686AC;
+}
+
+.correct {
+    background-color: #68ba7f;
+    border-color: #205830;
+    color: #0f0e47;
+}
+
+.present {
+    background-color: #d4af37;
+    border-color: #69530b;
+}
+
+.absent {
+    background-color: #0f0e47;
+    border-color: #272727;
+    color: #505081;
 }

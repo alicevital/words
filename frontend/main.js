@@ -9,6 +9,7 @@ let progresso = JSON.parse(localStorage.getItem("termo")) || {};
 if (!progresso[hoje]) {
   progresso[hoje] = {
     tentativas: [],
+    resultados: [],
     venceu: false
   };
 }
@@ -26,7 +27,16 @@ function render() {
     const cells = rows[i].children;
 
     palavra.split("").forEach((letra, j) => {
-      cells[j].innerText = letra;
+
+      const cell = cells[j];
+      cells.innerText = letra;
+      cell.classList.remove("correct", "present", "absent");
+
+      const estado = progresso[hoje].resultados?.[i]?.[j];
+
+      if (estado) {
+        cell.classList.add(estado);
+      }
     });
   });
 }
@@ -79,6 +89,7 @@ async function enviar() {
 
     
     progresso[hoje].tentativas.push(palavra);
+    progresso[hoje].resultados.push(data.resultado);
 
     
     const venceu = data.resultado.every(r => r === "correct");
